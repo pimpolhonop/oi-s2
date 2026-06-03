@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termo do Filezinho</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container{
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    margin-bottom: 10px;
+    color: #2c5aa0;
+    font-size: 36px;
+}
+
+.info{
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+input{
+    padding: 12px;
+    font-size: 18px;
+    width: 80%;
+    text-transform: uppercase;
+    border: 2px solid #87CEEB;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: border-color 0.3s;
+}
+
+input:focus{
+    outline: none;
+    border-color: #2c5aa0;
+}
+
+button{
+    padding: 12px 30px;
+    margin-top: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #87CEEB 0%, #4da6d6 100%);
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 166, 214, 0.4);
+}
+
+button:active{
+    transform: translateY(0);
+}
+
+.contador{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.contador strong{
+    color: #2c5aa0;
+}
+
+#tentativas{
+    margin-top: 25px;
+    min-height: 20px;
+}
+
+.tentativa{
+    margin: 10px 0;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.letra{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+}
+
+.letra.correto{
+    background: #6aaa64;
+}
+
+.letra.posicao{
+    background: #c8b458;
+}
+
+.letra.errado{
+    background: #787c7e;
+}
+
+#mensagemFinal{
+    display: none;
+    margin-top: 30px;
+    font-size: 22px;
+    line-height: 1.8;
+    animation: fadeIn 0.5s ease-in;
+    color: #2c5aa0;
+}
+
+#mensagemFinal strong{
+    color: #d32f2f;
+    font-size: 24px;
+}
+
+.mensagem-derrota{
+    display: none;
+    margin-top: 30px;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #d32f2f;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.mensagem-derrota strong{
+    color: #2c5aa0;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.legenda{
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 12px;
+    color: #999;
+}
+
+.legenda-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.legenda-box{
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+}
+
+.disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Confetes */
+.confete {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    opacity: 1;
+    animation: cair 3s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(100vh) rotateZ(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🎮 TERMO</h1>
+    <div class="info">Adivinhe a palavra em 6 tentativas!</div>
+
+    <input id="palpite" maxlength="9" placeholder="Digite uma palavra">
+    <br>
+    <button id="btnEnviar" onclick="verificar()">Enviar</button>
+
+    <div class="contador">
+        Tentativas: <strong id="numTentativas">0</strong> / <strong>6</strong>
+    </div>
+
+    <div id="tentativas"></div>
+
+    <div id="mensagemFinal">
+        🎉<br><br>
+        <strong>Incrível!!</strong><br>
+        Você acertou isso mais rápido do que responde minhas mensagens.<br>
+        te amo❤️
+    </div>
+
+    <div class="mensagem-derrota">
+        😢<br><br>
+        <strong>Game Over!</strong><br>
+        A palavra era: <span id="palavraResposta"></span><br>
+        Tente novamente!
+    </div>
+
+    <div class="legenda">
+        <div class="legenda-item">
+            <div class="legenda-box" style="background: #6aaa64;"></div>
+            Letra correta no lugar certo
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-box" style="background: #c8b458;"></div>
+            Letra correta no lugar errado
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-box" style="background: #787c7e;"></div>
+            Letra não existe na palavra
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+const palavraSecreta = "FILEZINHO";
+let tentativas = 0;
+const MAX_TENTATIVAS = 6;
+let jogoFinalizado = false;
+
+function criarConfetes(){
+    const cores = ['#ff6b6b', '#ff8e72', '#ffd43b', '#51cf66', '#74c0fc', '#b197fc', '#ff6b9d'];
+    
+    for(let i = 0; i < 50; i++){
+        const confete = document.createElement('div');
+        confete.className = 'confete';
+        confete.style.left = Math.random() * 100 + '%';
+        confete.style.background = cores[Math.floor(Math.random() * cores.length)];
+        confete.style.delay = Math.random() * 0.3 + 's';
+        confete.style.animationDuration = (2 + Math.random()) + 's';
+        document.body.appendChild(confete);
+        
+        setTimeout(() => {
+            confete.remove();
+        }, 3500);
+    }
+}
+
+function iniciarJogo(){
+    tentativas = 0;
+    jogoFinalizado = false;
+    document.getElementById("palpite").value = "";
+    document.getElementById("palpite").style.display = "block";
+    document.getElementById("btnEnviar").style.display = "inline-block";
+    document.getElementById("tentativas").innerHTML = "";
+    document.getElementById("mensagemFinal").style.display = "none";
+    document.querySelector(".mensagem-derrota").style.display = "none";
+    document.getElementById("numTentativas").textContent = "0";
+    document.getElementById("palpite").focus();
+}
+
+function compararPalavras(palpite, secreta){
+    const resultado = [];
+    const secretaArray = secreta.split("");
+    const palpiteArray = palpite.split("");
+
+    // Primeira passagem: marcar corretos
+    for(let i = 0; i < palpiteArray.length; i++){
+        if(palpiteArray[i] === secretaArray[i]){
+            resultado[i] = "correto";
+            secretaArray[i] = null;
+        } else {
+            resultado[i] = null;
+        }
+    }
+
+    // Segunda passagem: marcar posição errada ou errado
+    for(let i = 0; i < palpiteArray.length; i++){
+        if(resultado[i] === null){
+            if(secretaArray.includes(palpiteArray[i])){
+                resultado[i] = "posicao";
+                secretaArray[secretaArray.indexOf(palpiteArray[i])] = null;
+            } else {
+                resultado[i] = "errado";
+            }
+        }
+    }
+
+    return resultado;
+}
+
+function verificar(){
+
+    if(jogoFinalizado) return;
+
+    const input = document.getElementById("palpite");
+    const palpite = input.value.toUpperCase().trim();
+
+    if(!palpite){
+        alert("Digite uma palavra!");
+        return;
+    }
+
+    tentativas++;
+    document.getElementById("numTentativas").textContent = tentativas;
+
+    const resultado = compararPalavras(palpite, palavraSecreta);
+
+    const div = document.createElement("div");
+    div.className = "tentativa";
+
+    for(let i = 0; i < palpite.length; i++){
+        const letra = document.createElement("div");
+        letra.className = "letra " + resultado[i];
+        letra.textContent = palpite[i];
+        div.appendChild(letra);
+    }
+
+    document.getElementById("tentativas").prepend(div);
+
+    if(palpite === palavraSecreta){
+        criarConfetes();
+        document.getElementById("mensagemFinal").style.display = "block";
+        input.style.display = "none";
+        document.getElementById("btnEnviar").style.display = "none";
+        jogoFinalizado = true;
+        
+        setTimeout(() => {
+            if(confirm("🎮 Quer jogar novamente?")){
+                iniciarJogo();
+            }
+        }, 2000);
+        return;
+    }
+
+    if(tentativas >= MAX_TENTATIVAS){
+        document.querySelector(".mensagem-derrota").style.display = "block";
+        document.getElementById("palavraResposta").textContent = palavraSecreta;
+        input.style.display = "none";
+        document.getElementById("btnEnviar").style.display = "none";
+        jogoFinalizado = true;
+        
+        setTimeout(() => {
+            if(confirm("🎮 Quer jogar novamente?")){
+                iniciarJogo();
+            }
+        }, 2000);
+        return;
+    }
+
+    input.value = "";
+    input.focus();
+}
+
+document.getElementById("palpite")
+.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+        verificar();
+    }
+});
+
+// Iniciar o jogo
+iniciarJogo();
+
+</script>
+
+</body>
+</html>
