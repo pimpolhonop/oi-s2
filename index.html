@@ -8,21 +8,16 @@
 <style>
 body{
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
+    background-color: #0a0a0a;
     background-image: 
-        radial-gradient(circle at 20% 30%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 75% 70%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 85% 20%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 10% 80%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 45% 50%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 60% 15%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 30% 65%, #FFD700 0.5%, transparent 0.7%),
-        radial-gradient(circle at 90% 45%, #FFD700 0.5%, transparent 0.7%),
-        /* Símbolos Batman (⚡) */
-        repeating-linear-gradient(45deg, transparent, transparent 200px, rgba(255, 215, 0, 0.1) 200px, rgba(255, 215, 0, 0.1) 400px),
-        repeating-linear-gradient(-45deg, transparent, transparent 200px, rgba(255, 215, 0, 0.05) 200px, rgba(255, 215, 0, 0.05) 400px);
-    background-size: 150px 150px, 180px 180px, 200px 200px, 170px 170px, 220px 220px, 160px 160px, 190px 190px, 210px 210px, 100% 100%, 100% 100%;
-    background-position: 0 0, 50px 50px, 100px 100px, 30px 70px, 80px 20px, 120px 150px, 60px 40px, 140px 90px, 0 0, 0 0;
+        /* Logos Batman (usando SVG inline como background) */
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>');
+    background-size: 150px 150px, 200px 200px, 180px 180px, 220px 220px;
+    background-position: 0 0, 100px 50px, 50px 100px, 150px 150px;
+    background-repeat: repeat;
     background-attachment: fixed;
     color: #333;
     display: flex;
@@ -34,14 +29,14 @@ body{
     overflow: hidden;
 }
 
-/* Efeito Batman com símbolo */
+/* Efeito extra Batman */
 body::before {
     content: "🦇";
     position: fixed;
     top: 5%;
     left: 5%;
     font-size: 80px;
-    opacity: 0.15;
+    opacity: 0.3;
     z-index: 0;
     pointer-events: none;
 }
@@ -52,7 +47,7 @@ body::after {
     bottom: 10%;
     right: 8%;
     font-size: 100px;
-    opacity: 0.12;
+    opacity: 0.25;
     z-index: 0;
     pointer-events: none;
 }
@@ -64,7 +59,7 @@ body::after {
     background: white;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
 }
