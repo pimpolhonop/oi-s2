@@ -238,7 +238,7 @@ button:active{
     <h1>TERMO</h1>
     <div class="info">Adivinhe a palavra em 6 tentativas!</div>
 
-    <input id="palpite" maxlength="9" placeholder="Digite uma palavra">
+    <input id="palpite" maxlength="15" placeholder="Digite uma palavra">
     <br>
     <button id="btnEnviar" onclick="verificar()">Enviar</button>
 
@@ -284,7 +284,7 @@ button:active{
 <script>
 
 const palavraSecreta = "FILEZINHO";
-const palavrasNarcisista = ["JOAO", "LACET"];
+const palavrasNarcisista = ["JOAO", "JOÃO", "JOAO LACET", "JOAOLACET", "JOÃO LACET"];
 let tentativas = 0;
 const MAX_TENTATIVAS = 6;
 let jogoFinalizado = false;
