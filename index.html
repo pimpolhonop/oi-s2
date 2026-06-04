@@ -212,14 +212,18 @@ button:active{
 /* Confetes em forma de coração */
 .confete-coracao {
     position: fixed;
-    font-size: 30px;
+    font-size: 40px;
     opacity: 1;
-    animation: cair 4s ease-in forwards;
+    animation: cair 5s ease-in forwards;
     pointer-events: none;
+    z-index: 9999;
 }
 
 @keyframes cair {
-    to {
+    0% {
+        transform: translateY(-100px) rotateZ(0deg);
+    }
+    100% {
         transform: translateY(100vh) rotateZ(360deg);
         opacity: 0;
     }
@@ -286,18 +290,20 @@ const MAX_TENTATIVAS = 6;
 let jogoFinalizado = false;
 
 function criarConfetesCoracao(){
-    for(let i = 0; i < 40; i++){
+    for(let i = 0; i < 50; i++){
         const confete = document.createElement('div');
         confete.className = 'confete-coracao';
         confete.textContent = '💛';
-        confete.style.left = Math.random() * 100 + '%';
-        confete.style.delay = Math.random() * 0.3 + 's';
-        confete.style.animationDuration = (4 + Math.random()) + 's';
+        confete.style.left = Math.random() * 100 + 'vw';
+        confete.style.top = '-100px';
+        confete.style.delay = Math.random() * 0.5 + 's';
+        confete.style.animationDuration = (5 + Math.random() * 2) + 's';
+        confete.style.setProperty('--rotation', Math.random() * 360 + 'deg');
         document.body.appendChild(confete);
         
         setTimeout(() => {
             confete.remove();
-        }, 4500);
+        }, 7000);
     }
 }
 
@@ -401,12 +407,12 @@ function verificar(){
         document.getElementById("btnEnviar").style.display = "none";
         jogoFinalizado = true;
         
-        // Confirmação aparece APÓS 4.5 segundos (depois dos confetes)
+        // Confirmação aparece APÓS 5 segundos (depois dos confetes)
         setTimeout(() => {
             if(confirm("Quer jogar novamente?")){
                 iniciarJogo();
             }
-        }, 4500);
+        }, 5000);
         return;
     }
 
