@@ -8,17 +8,7 @@
 <style>
 body{
     font-family: Arial, sans-serif;
-    background-color: #0a0a0a;
-    background-image: 
-        /* Logos Batman (usando SVG inline como background) - MENORES */
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>');
-    background-size: 80px 80px, 100px 100px, 90px 90px, 110px 110px;
-    background-position: 0 0, 50px 50px, 30px 80px, 70px 30px;
-    background-repeat: repeat;
-    background-attachment: fixed;
+    background-color: #000000;
     color: #333;
     display: flex;
     justify-content: center;
@@ -39,6 +29,7 @@ body{
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
+    border: 3px solid #FFD700;
 }
 
 h1{
@@ -76,7 +67,7 @@ button{
     padding: 12px 30px;
     margin-top: 15px;
     font-size: 16px;
-    border: none;
+    border: 2px solid #FFD700;
     border-radius: 8px;
     cursor: pointer;
     background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
@@ -186,7 +177,7 @@ button:active{
 .legenda{
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 2px solid #FFD700;
     font-size: 12px;
     color: #999;
 }
