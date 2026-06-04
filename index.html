@@ -22,9 +22,9 @@ body{
 .container{
     text-align: center;
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     background: white;
-    padding: 40px;
+    padding: 25px;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     position: relative;
@@ -33,21 +33,21 @@ body{
 }
 
 h1{
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #FFD700;
-    font-size: 36px;
+    font-size: 32px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .info{
-    font-size: 14px;
+    font-size: 12px;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 input{
-    padding: 12px;
-    font-size: 18px;
+    padding: 10px;
+    font-size: 16px;
     width: 80%;
     text-transform: uppercase;
     border: 2px solid #FFD700;
@@ -64,9 +64,9 @@ input:focus{
 }
 
 button{
-    padding: 12px 30px;
-    margin-top: 15px;
-    font-size: 16px;
+    padding: 10px 25px;
+    margin-top: 12px;
+    font-size: 14px;
     border: 2px solid #FFD700;
     border-radius: 8px;
     cursor: pointer;
@@ -86,8 +86,8 @@ button:active{
 }
 
 .contador{
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 15px;
+    font-size: 12px;
     color: #666;
 }
 
@@ -96,32 +96,35 @@ button:active{
 }
 
 #tentativas{
-    margin-top: 25px;
+    margin-top: 15px;
     min-height: 20px;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .tentativa{
-    margin: 10px 0;
-    padding: 15px;
+    margin: 8px 0;
+    padding: 12px;
     background: #f5f5f5;
     border-radius: 8px;
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     gap: 4px;
 }
 
 .letra{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
     font-weight: bold;
     color: white;
+    font-size: 14px;
 }
 
 .letra.correto{
@@ -138,29 +141,39 @@ button:active{
 
 #mensagemFinal{
     display: none;
-    margin-top: 30px;
-    font-size: 22px;
-    line-height: 1.8;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
     animation: fadeIn 0.5s ease-in;
     color: #1a1a1a;
 }
 
 #mensagemFinal strong{
     color: #FFD700;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .mensagem-derrota{
     display: none;
-    margin-top: 30px;
-    font-size: 20px;
-    line-height: 1.8;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
     color: #d32f2f;
     animation: fadeIn 0.5s ease-in;
 }
 
 .mensagem-derrota strong{
     color: #1a1a1a;
+}
+
+.mensagem-narcisista{
+    display: none;
+    margin-top: 20px;
+    font-size: 28px;
+    line-height: 1.6;
+    animation: fadeIn 0.5s ease-in;
+    color: #FFD700;
+    font-weight: bold;
 }
 
 @keyframes fadeIn{
@@ -175,10 +188,10 @@ button:active{
 }
 
 .legenda{
-    margin-top: 30px;
-    padding-top: 20px;
+    margin-top: 20px;
+    padding-top: 15px;
     border-top: 2px solid #FFD700;
-    font-size: 12px;
+    font-size: 11px;
     color: #999;
 }
 
@@ -187,26 +200,19 @@ button:active{
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin: 8px 0;
+    margin: 6px 0;
 }
 
 .legenda-box{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 3px;
 }
 
-.disabled{
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-/* Confetes */
-.confete {
+/* Confetes em forma de coração */
+.confete-coracao {
     position: fixed;
-    width: 10px;
-    height: 10px;
-    background: #FFD700;
+    font-size: 30px;
     opacity: 1;
     animation: cair 4s ease-in forwards;
     pointer-events: none;
@@ -239,31 +245,33 @@ button:active{
     <div id="tentativas"></div>
 
     <div id="mensagemFinal">
-        <br><br>
         <strong>Incrível.</strong><br>
         Você acertou isso mais rápido do que responde minhas mensagens.<br>
         te amo meu batman ;) 💛
     </div>
 
     <div class="mensagem-derrota">
-        😢<br><br>
+        😢<br>
         <strong>Game Over!</strong><br>
-        A palavra era: <span id="palavraResposta"></span><br>
-        Tente novamente!
+        A palavra era: <span id="palavraResposta"></span>
+    </div>
+
+    <div class="mensagem-narcisista">
+        narcisista haha
     </div>
 
     <div class="legenda">
         <div class="legenda-item">
             <div class="legenda-box" style="background: #6aaa64;"></div>
-            Letra correta no lugar certo
+            Correta
         </div>
         <div class="legenda-item">
             <div class="legenda-box" style="background: #c8b458;"></div>
-            Letra correta no lugar errado
+            Lugar errado
         </div>
         <div class="legenda-item">
             <div class="legenda-box" style="background: #787c7e;"></div>
-            Letra não existe na palavra
+            Não existe
         </div>
     </div>
 
@@ -272,18 +280,17 @@ button:active{
 <script>
 
 const palavraSecreta = "FILEZINHO";
+const palavrasNarcisista = ["JOAO", "LACET"];
 let tentativas = 0;
 const MAX_TENTATIVAS = 6;
 let jogoFinalizado = false;
 
-function criarConfetes(){
-    const cores = ['#FFD700', '#FFA500', '#87CEEB', '#FF6B6B', '#51CF66'];
-    
-    for(let i = 0; i < 50; i++){
+function criarConfetesCoracao(){
+    for(let i = 0; i < 40; i++){
         const confete = document.createElement('div');
-        confete.className = 'confete';
+        confete.className = 'confete-coracao';
+        confete.textContent = '💛';
         confete.style.left = Math.random() * 100 + '%';
-        confete.style.background = cores[Math.floor(Math.random() * cores.length)];
         confete.style.delay = Math.random() * 0.3 + 's';
         confete.style.animationDuration = (4 + Math.random()) + 's';
         document.body.appendChild(confete);
@@ -303,6 +310,7 @@ function iniciarJogo(){
     document.getElementById("tentativas").innerHTML = "";
     document.getElementById("mensagemFinal").style.display = "none";
     document.querySelector(".mensagem-derrota").style.display = "none";
+    document.querySelector(".mensagem-narcisista").style.display = "none";
     document.getElementById("numTentativas").textContent = "0";
     document.getElementById("palpite").focus();
 }
@@ -349,6 +357,26 @@ function verificar(){
         return;
     }
 
+    // Verificar se é uma palavra narcisista
+    if(palavrasNarcisista.includes(palpite)){
+        document.querySelector(".mensagem-narcisista").style.display = "block";
+        input.style.display = "none";
+        document.getElementById("btnEnviar").style.display = "none";
+        jogoFinalizado = true;
+
+        setTimeout(() => {
+            // Volta para o jogo
+            document.querySelector(".mensagem-narcisista").style.display = "none";
+            input.style.display = "block";
+            document.getElementById("btnEnviar").style.display = "inline-block";
+            input.value = "";
+            input.focus();
+            jogoFinalizado = false;
+        }, 7000);
+
+        return;
+    }
+
     tentativas++;
     document.getElementById("numTentativas").textContent = tentativas;
 
@@ -367,7 +395,7 @@ function verificar(){
     document.getElementById("tentativas").prepend(div);
 
     if(palpite === palavraSecreta){
-        criarConfetes();
+        criarConfetesCoracao();
         document.getElementById("mensagemFinal").style.display = "block";
         input.style.display = "none";
         document.getElementById("btnEnviar").style.display = "none";
