@@ -10,13 +10,13 @@ body{
     font-family: Arial, sans-serif;
     background-color: #0a0a0a;
     background-image: 
-        /* Logos Batman (usando SVG inline como background) */
+        /* Logos Batman (usando SVG inline como background) - MENORES */
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>'),
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700"/><path d="M50 10 L65 35 L70 25 L80 40 L75 50 L80 60 L70 65 L65 55 L50 70 L35 55 L30 65 L20 60 L25 50 L20 40 L30 25 L35 35 Z" fill="%23000"/></svg>');
-    background-size: 150px 150px, 200px 200px, 180px 180px, 220px 220px;
-    background-position: 0 0, 100px 50px, 50px 100px, 150px 150px;
+    background-size: 80px 80px, 100px 100px, 90px 90px, 110px 110px;
+    background-position: 0 0, 50px 50px, 30px 80px, 70px 30px;
     background-repeat: repeat;
     background-attachment: fixed;
     color: #333;
@@ -27,29 +27,6 @@ body{
     margin: 0;
     position: relative;
     overflow: hidden;
-}
-
-/* Efeito extra Batman */
-body::before {
-    content: "🦇";
-    position: fixed;
-    top: 5%;
-    left: 5%;
-    font-size: 80px;
-    opacity: 0.3;
-    z-index: 0;
-    pointer-events: none;
-}
-
-body::after {
-    content: "🦇";
-    position: fixed;
-    bottom: 10%;
-    right: 8%;
-    font-size: 100px;
-    opacity: 0.25;
-    z-index: 0;
-    pointer-events: none;
 }
 
 .container{
@@ -240,7 +217,7 @@ button:active{
     height: 10px;
     background: #FFD700;
     opacity: 1;
-    animation: cair 3s ease-in forwards;
+    animation: cair 4s ease-in forwards;
     pointer-events: none;
 }
 
@@ -257,7 +234,7 @@ button:active{
 
 <div class="container">
 
-    <h1>🦇 TERMO 🦇</h1>
+    <h1>TERMO</h1>
     <div class="info">Adivinhe a palavra em 6 tentativas!</div>
 
     <input id="palpite" maxlength="9" placeholder="Digite uma palavra">
@@ -271,7 +248,7 @@ button:active{
     <div id="tentativas"></div>
 
     <div id="mensagemFinal">
-        🎉<br><br>
+        <br><br>
         <strong>Incrível.</strong><br>
         Você acertou isso mais rápido do que responde minhas mensagens.<br>
         te amo meu batman ;) 💛
@@ -317,12 +294,12 @@ function criarConfetes(){
         confete.style.left = Math.random() * 100 + '%';
         confete.style.background = cores[Math.floor(Math.random() * cores.length)];
         confete.style.delay = Math.random() * 0.3 + 's';
-        confete.style.animationDuration = (2 + Math.random()) + 's';
+        confete.style.animationDuration = (4 + Math.random()) + 's';
         document.body.appendChild(confete);
         
         setTimeout(() => {
             confete.remove();
-        }, 3500);
+        }, 4500);
     }
 }
 
@@ -405,11 +382,12 @@ function verificar(){
         document.getElementById("btnEnviar").style.display = "none";
         jogoFinalizado = true;
         
+        // Confirmação aparece APÓS 4.5 segundos (depois dos confetes)
         setTimeout(() => {
-            if(confirm("🎮 Quer jogar novamente?")){
+            if(confirm("Quer jogar novamente?")){
                 iniciarJogo();
             }
-        }, 2000);
+        }, 4500);
         return;
     }
 
@@ -421,7 +399,7 @@ function verificar(){
         jogoFinalizado = true;
         
         setTimeout(() => {
-            if(confirm("🎮 Quer jogar novamente?")){
+            if(confirm("Quer jogar novamente?")){
                 iniciarJogo();
             }
         }, 2000);
